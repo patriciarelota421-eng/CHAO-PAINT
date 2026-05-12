@@ -30,6 +30,9 @@
         --radius: 18px;
         --radius2: 12px;
         --focus: 0 0 0 4px rgba(255,122,24,.22);
+        --padX: clamp(12px, 3.2vw, 18px);
+        --cardPad: clamp(14px, 2.8vw, 18px);
+        --heroPad: clamp(18px, 3.6vw, 26px);
         --heroPhotoH: 220px;
         --storePhotoH: 190px;
         --productImgH: 160px;
@@ -51,7 +54,8 @@
           linear-gradient(180deg, #050b16 0%, #07101f 45%, #050b16 100%);
       }
       a{color:inherit}
-      .container{max-width:1140px;margin:0 auto;padding:0 18px}
+      img{max-width:100%}
+      .container{max-width:1140px;margin:0 auto;padding:0 var(--padX)}
 
       .topbar{
         position:sticky;top:0;z-index:50;
@@ -61,7 +65,7 @@
       }
       .topbarInner{
         display:flex;align-items:center;justify-content:space-between;
-        padding:14px 0;
+        padding: clamp(10px, 2.2vw, 14px) 0;
         gap:12px;
       }
       .brand{
@@ -163,7 +167,7 @@
       .badge span{opacity:.9}
 
       .hero{
-        padding:36px 0 18px;
+        padding: clamp(22px, 5.2vw, 36px) 0 18px;
         display:grid;
         grid-template-columns: 1.1fr .9fr;
         gap:22px;
@@ -174,7 +178,7 @@
         border-radius: var(--radius);
         background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
         box-shadow: var(--shadow);
-        padding:26px;
+        padding: var(--heroPad);
         position:relative;
         overflow:hidden;
       }
@@ -241,7 +245,7 @@
         border-radius: var(--radius);
         background: rgba(255,255,255,.03);
         box-shadow: var(--shadow);
-        padding:18px;
+        padding:var(--cardPad);
       }
       .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
       .kpi{
@@ -287,7 +291,7 @@
         gap:14px;
       }
       .pCard{
-        padding:16px;border-radius:18px;
+        padding:clamp(14px, 2.6vw, 16px);border-radius:18px;
         border:1px solid var(--border);
         background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
         box-shadow: var(--shadow);
@@ -408,9 +412,6 @@
           --chartH: 220px;
           --chartHCompact: 210px;
         }
-        .container{padding:0 14px}
-        .hero{padding:22px 0 12px}
-        .heroCard{padding:18px}
         .nav{display:none}
         .hamburger{display:inline-flex;align-items:center;justify-content:center}
         .mobileMenu{display:block}
@@ -436,11 +437,10 @@
           --chartH: 200px;
           --chartHCompact: 190px;
         }
-        .container{padding:0 12px}
-        .heroCard{padding:16px}
-        .card{padding:14px}
-        .pCard{padding:14px}
         .floatBtn{right:10px;bottom:10px;padding:10px 12px}
+      }
+      @media (min-width: 1300px){
+        .container{max-width: 1240px}
       }
     </style>
   </head>
