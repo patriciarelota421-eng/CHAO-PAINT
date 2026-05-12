@@ -1,0 +1,2366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHAO PAINT — Paint Center</title>
+    <meta
+      name="description"
+      content="Chao Paint Center in Sibalom, Antique — quality paints, supplies, and hardware materials with free paint mixing and free delivery within Antique."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root{
+        --bg:#07101f;
+        --panel: rgba(255,255,255,.06);
+        --panel2: rgba(255,255,255,.04);
+        --text:#eef3fb;
+        --muted:#b8c3d6;
+        --border:rgba(255,255,255,.10);
+        --navy:#07101f;
+        --orange:#ff7a18;
+        --gold:#f5d06f;
+        --gray:#e7ebf2;
+        --shadow: 0 18px 45px rgba(0,0,0,.35);
+        --radius: 18px;
+        --radius2: 12px;
+        --focus: 0 0 0 4px rgba(255,122,24,.22);
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        color:var(--text);
+        background:
+          radial-gradient(1200px 720px at 10% -12%, rgba(255,122,24,.20), transparent 60%),
+          radial-gradient(1000px 760px at 92% 0%, rgba(245,208,111,.16), transparent 55%),
+          radial-gradient(1200px 900px at 60% 110%, rgba(231,235,242,.08), transparent 62%),
+          linear-gradient(180deg, #050b16 0%, #07101f 45%, #050b16 100%);
+      }
+      a{color:inherit}
+      .container{max-width:1140px;margin:0 auto;padding:0 18px}
+
+      .topbar{
+        position:sticky;top:0;z-index:50;
+        backdrop-filter: blur(10px);
+        background: rgba(7,10,15,.62);
+        border-bottom:1px solid var(--border);
+      }
+      .topbarInner{
+        display:flex;align-items:center;justify-content:space-between;
+        padding:14px 0;
+        gap:12px;
+      }
+      .brand{
+        display:flex;align-items:center;gap:10px;
+        font-weight:900;letter-spacing:.4px;
+      }
+      .logo{
+        width:34px;height:34px;border-radius:50%;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255,255,255,.30), transparent 55%),
+          linear-gradient(135deg, var(--gold) 0%, var(--orange) 60%, var(--gray) 130%);
+        box-shadow: 0 12px 30px rgba(255,122,24,.18);
+        position:relative;
+      }
+      .logo:after{
+        content:"";
+        position:absolute;left:12px;top:22px;
+        width:10px;height:14px;border-radius:0 0 10px 10px;
+        background: rgba(255,255,255,.34);
+        transform: rotate(12deg);
+        filter: blur(.1px);
+      }
+      .tag{
+        display:inline-flex;align-items:center;gap:8px;
+        font-weight:700;
+        color:var(--muted);
+        border:1px solid var(--border);
+        padding:7px 10px;border-radius:999px;
+        background: rgba(255,255,255,.03);
+        white-space:nowrap;
+      }
+      .tagDot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(245,208,111,.12)}
+
+      .nav{display:flex;align-items:center;gap:10px}
+      .nav a, .nav button{
+        appearance:none;border:1px solid transparent;background:transparent;
+        color:var(--muted);
+        padding:10px 12px;border-radius:12px;
+        font-weight:800;letter-spacing:.2px;
+        cursor:pointer;
+      }
+      .nav a:hover, .nav button:hover{background: rgba(255,255,255,.05); color:var(--text)}
+      .nav a.active{
+        color:var(--text);
+        border-color: rgba(245,208,111,.35);
+        background: rgba(245,208,111,.10);
+      }
+      .hamburger{
+        display:none;
+        width:42px;height:42px;border-radius:12px;
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.03);
+        color:var(--text);
+      }
+      .mobileMenu{
+        display:none;
+        border-top:1px solid var(--border);
+        padding:10px 0 14px;
+      }
+      .mobileMenu a, .mobileMenu button{
+        width:100%;
+        text-align:left;
+        padding:12px 12px;
+        border-radius:12px;
+        margin:4px 0;
+        border:1px solid transparent;
+        background:transparent;
+        color:var(--muted);
+        font-weight:800;
+        cursor:pointer;
+      }
+      .mobileMenu a.active{
+        color:var(--text);
+        border-color: rgba(245,208,111,.35);
+        background: rgba(245,208,111,.10);
+      }
+      .mobileMenu a:hover, .mobileMenu button:hover{background: rgba(255,255,255,.05); color:var(--text)}
+
+      .banner{
+        margin:16px 0 0;
+        border:1px solid rgba(245,208,111,.24);
+        background:
+          linear-gradient(135deg, rgba(255,122,24,.14), rgba(245,208,111,.12), rgba(231,235,242,.06));
+        border-radius: var(--radius);
+        padding:14px 14px;
+        box-shadow: var(--shadow);
+        display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      }
+      .banner strong{color:var(--text)}
+      .badge{
+        display:inline-flex;align-items:center;gap:8px;
+        padding:8px 10px;border-radius:999px;
+        border:1px solid var(--border);
+        background: rgba(0,0,0,.18);
+        color:var(--text);
+        font-weight:900;
+        white-space:nowrap;
+      }
+      .badge span{opacity:.9}
+
+      .hero{
+        padding:36px 0 18px;
+        display:grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap:22px;
+        align-items:stretch;
+      }
+      .heroCard{
+        border:1px solid var(--border);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+        box-shadow: var(--shadow);
+        padding:26px;
+        position:relative;
+        overflow:hidden;
+      }
+      .heroCard:before{
+        content:"";
+        position:absolute;inset:-1px;
+        background: radial-gradient(700px 320px at 18% 18%, rgba(255,122,24,.18), transparent 65%),
+          radial-gradient(540px 300px at 88% 22%, rgba(245,208,111,.16), transparent 60%),
+          radial-gradient(680px 420px at 70% 98%, rgba(231,235,242,.10), transparent 62%);
+        opacity:.95;
+        pointer-events:none;
+      }
+      .heroCard > *{position:relative}
+      .hTitle{
+        font-size: clamp(28px, 3.1vw, 44px);
+        line-height: 1.05;
+        margin:0 0 10px;
+        letter-spacing: -.6px;
+        font-weight: 900;
+        font-family: Poppins, Inter, ui-sans-serif, system-ui;
+      }
+      .heroPhotoFrame{
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        box-shadow: 0 18px 45px rgba(0,0,0,.22);
+        margin: 0 0 14px;
+      }
+      .heroPhotoFrame img{
+        width:100%;
+        height: 220px;
+        object-fit: contain;
+        object-position: center;
+        display:block;
+        padding: 10px;
+        background: rgba(255,255,255,.06);
+      }
+      .sectionTitle, .pName{
+        font-family: Poppins, Inter, ui-sans-serif, system-ui;
+        font-weight: 900;
+      }
+      .hSub{margin:0 0 18px;color:rgba(231,238,247,.86);font-weight:650;max-width:58ch}
+      .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+      .btn{
+        appearance:none;border:1px solid transparent;
+        background: rgba(255,255,255,.06);
+        color:var(--text);
+        padding:12px 14px;border-radius:14px;
+        font-weight:950;letter-spacing:.2px;
+        cursor:pointer;
+        box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      }
+      .btn.primary{
+        background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 78%, #ffffff 150%);
+        color:#111827;
+        border-color: rgba(255,255,255,.22);
+      }
+      .btn:hover{transform: translateY(-1px)}
+      .btn:active{transform: translateY(0px)}
+      .btn:focus{outline:none; box-shadow: var(--shadow), var(--focus)}
+      .card{
+        border:1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255,255,255,.03);
+        box-shadow: var(--shadow);
+        padding:18px;
+      }
+      .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      .kpi{
+        padding:14px;border-radius:14px;
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.04);
+        backdrop-filter: blur(8px);
+      }
+      .kpi .label{color:var(--muted);font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase}
+      .kpi .value{font-weight:950;font-size:18px;margin-top:6px}
+      .kpi .sub{color:rgba(231,238,247,.76);font-weight:700;font-size:12px;margin-top:4px}
+
+      .section{padding:18px 0 28px}
+      .sectionTitle{margin:0 0 12px;font-size:22px;font-weight:950;letter-spacing:-.25px}
+      .muted{color:var(--muted)}
+      .split{
+        display:grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap:18px;
+        align-items:start;
+      }
+      .list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+      .li{
+        display:flex;gap:10px;align-items:flex-start;
+        padding:12px;border-radius:14px;
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.02);
+      }
+      .liIcon{
+        width:28px;height:28px;border-radius:10px;
+        background: rgba(245,208,111,.14);
+        border:1px solid rgba(245,208,111,.25);
+        display:flex;align-items:center;justify-content:center;
+        flex: 0 0 auto;
+        font-weight:950;color:rgba(245,208,111,.95);
+      }
+      .li strong{display:block;margin-bottom:2px}
+      .li p{margin:0;color:rgba(231,238,247,.80);font-weight:650}
+
+      .cards{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap:14px;
+      }
+      .pCard{
+        padding:16px;border-radius:18px;
+        border:1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+        box-shadow: var(--shadow);
+        display:flex;flex-direction:column;gap:10px;
+        min-height: 210px;
+      }
+      .pTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+      .pName{margin:0;font-weight:950;letter-spacing:-.25px}
+      .pill{
+        display:inline-flex;align-items:center;gap:8px;
+        padding:6px 10px;border-radius:999px;
+        border:1px solid var(--border);
+        background: rgba(0,0,0,.18);
+        color: rgba(231,238,247,.86);
+        font-weight:850;
+        font-size:12px;
+        white-space:nowrap;
+      }
+      .pDesc{margin:0;color:rgba(231,238,247,.78);font-weight:650}
+      .pMeta{display:flex;gap:10px;flex-wrap:wrap}
+      .price{font-weight:950}
+      .stock{color: rgba(184,240,79,.95);font-weight:900}
+      .stock.low{color: rgba(255,213,74,.95)}
+      .stock.off{color: rgba(255,59,59,.95)}
+      .pActions{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
+      .btn.small{padding:10px 12px;border-radius:12px;font-weight:950}
+
+      .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      label{display:block;font-weight:900;color:rgba(231,238,247,.88);margin-bottom:6px}
+      input, select, textarea{
+        width:100%;
+        padding:12px 12px;
+        border-radius: 14px;
+        border:1px solid rgba(255,255,255,.14);
+        background: rgba(0,0,0,.22);
+        color: var(--text);
+        font-weight:800;
+        outline: none;
+      }
+      textarea{min-height: 92px; resize: vertical}
+      input:focus, select:focus, textarea:focus{box-shadow: var(--focus); border-color: rgba(255,213,74,.38)}
+      .help{margin-top:8px;color:rgba(231,238,247,.74);font-weight:650;font-size:12px}
+
+      .cart{
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.02);
+        border-radius: var(--radius);
+        padding:16px;
+      }
+      .cartRow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
+      .cartRow:first-child{border-top:none}
+      .cartRow .left{display:flex;flex-direction:column;gap:4px}
+      .cartRow .name{font-weight:950}
+      .cartRow .sub{color:rgba(231,238,247,.72);font-weight:700;font-size:12px}
+      .qtyRow{display:flex;align-items:center;gap:8px}
+      .qtyBtn{
+        width:36px;height:36px;border-radius:12px;
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.04);
+        color:var(--text);
+        font-weight:950;
+        cursor:pointer;
+      }
+      .qtyVal{min-width:38px;text-align:center;font-weight:950}
+
+      .tableWrap{overflow:auto;border-radius:var(--radius);border:1px solid var(--border);background: rgba(255,255,255,.02);box-shadow: var(--shadow)}
+      table{width:100%;border-collapse:collapse;min-width: 860px}
+      th,td{padding:12px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+      th{color:rgba(231,238,247,.86);font-weight:950;font-size:12px;letter-spacing:.35px;text-transform:uppercase;background: rgba(0,0,0,.16)}
+      td{color:rgba(231,238,247,.86);font-weight:750}
+      .tdSmall{color:rgba(231,238,247,.70);font-weight:700;font-size:12px}
+      .danger{
+        border-color: rgba(255,59,59,.35);
+        background: rgba(255,59,59,.10);
+      }
+      .success{
+        border-color: rgba(184,240,79,.35);
+        background: rgba(184,240,79,.10);
+      }
+      .warn{
+        border-color: rgba(255,213,74,.35);
+        background: rgba(255,213,74,.10);
+      }
+
+      .footer{
+        padding:22px 0 32px;
+        color:rgba(231,238,247,.72);
+        font-weight:700;
+      }
+      .footer a{color:rgba(231,238,247,.84)}
+      .floatBtn{
+        position:fixed;right:16px;bottom:16px;z-index:60;
+        padding:12px 14px;border-radius:999px;
+        border:1px solid rgba(255,255,255,.16);
+        background: rgba(0,0,0,.35);
+        backdrop-filter: blur(8px);
+        box-shadow: var(--shadow);
+        display:flex;align-items:center;gap:10px;
+        color:var(--text);
+        font-weight:950;
+        cursor:pointer;
+      }
+      .floatBtn:hover{background: rgba(0,0,0,.48)}
+      .tiny{font-size:12px;color:rgba(231,238,247,.70);font-weight:750}
+
+      @media (max-width: 980px){
+        .hero{grid-template-columns:1fr}
+        .split{grid-template-columns:1fr}
+        .cards{grid-template-columns: repeat(2, minmax(0,1fr))}
+      }
+      @media (max-width: 760px){
+        .nav{display:none}
+        .hamburger{display:inline-flex;align-items:center;justify-content:center}
+        .mobileMenu{display:block}
+        .cards{grid-template-columns: 1fr}
+        .formGrid{grid-template-columns:1fr}
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React (UMD) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Recharts (UMD) -->
+    <script crossorigin src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
+
+    <script>
+      const { useEffect, useMemo, useRef, useState } = React;
+
+      const CURRENCY = "\u20B1";
+      const BUSINESS = {
+        name: "CHAO PAINT CENTER",
+        type: "Paint Center",
+        location: "Sibalom, Antique",
+        phone: "09262524746",
+        email: "magbanuacrystal@gmail.com",
+        facebook: "facebook.com/chaopaintcenter",
+        hours: "Monday\u2013Saturday, 8AM\u20135PM",
+        shipping: "Free delivery within Antique",
+        payments: ["GCash", "Cash on Delivery", "Bank Transfer"],
+        gcash: "09262524746 — Jetro Magbanua",
+        adminPassword: "ChaoPaint2026",
+      };
+
+      const PRODUCTS = [
+        {
+          id: "boysen",
+          name: "Boysen Paint Products",
+          category: "Paints",
+          imageAlt: "Paint can with brush",
+          imageFiles: ["YDG0039.webp", "LC5.webp"],
+          imageSvg:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset=".55" stop-color="#ff3b3b"/><stop offset="1" stop-color="#b8f04f"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter></defs><rect width="1200" height="800" rx="42" fill="#0f1722"/><circle cx="210" cy="160" r="220" fill="url(#g)" opacity=".22"/><circle cx="1080" cy="60" r="260" fill="#ff3b3b" opacity=".12"/><circle cx="980" cy="760" r="320" fill="#b8f04f" opacity=".10"/><g filter="url(#s)"><rect x="360" y="210" width="420" height="430" rx="38" fill="#121c29" stroke="rgba(255,255,255,.18)" stroke-width="6"/><rect x="385" y="250" width="370" height="85" rx="26" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><text x="570" y="305" text-anchor="middle" font-family="ui-sans-serif,system-ui" font-size="34" font-weight="900" fill="rgba(231,238,247,.92)">PAINT</text><rect x="418" y="172" width="302" height="60" rx="26" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><rect x="450" y="140" width="240" height="55" rx="24" fill="url(#g)" opacity=".9"/><path d="M720 455c90-15 160 10 210 78 12 16 10 38-5 51l-58 51c-12 10-29 10-41 0-28-24-57-40-88-49-33-10-62-11-95-6-18 3-35-9-38-27l-10-60c-3-18 9-35 27-38z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><path d="M823 545l115-103" stroke="rgba(255,213,74,.9)" stroke-width="14" stroke-linecap="round"/><path d="M880 610c-28-24-57-40-88-49" stroke="rgba(184,240,79,.9)" stroke-width="10" stroke-linecap="round"/></g><text x="70" y="740" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="950" fill="rgba(231,238,247,.92)">Chao Paint Center</text></svg>',
+          description:
+            "High quality paints suitable for interior and exterior walls, providing durable finish and long-lasting color protection.",
+          priceNote: "₱200–₱3,800 depending on size and type",
+          stock: "Available",
+          variants: [
+            { label: "Sample / small can", price: 200 },
+            { label: "1 Liter", price: 480 },
+            { label: "4 Liters", price: 1250 },
+            { label: "Gallon", price: 1650 },
+            { label: "5 Gallon", price: 3800 },
+          ],
+        },
+        {
+          id: "mixing",
+          name: "Paint Mixing Service",
+          category: "Services",
+          imageAlt: "Paint mixing machine and color drops",
+          imageFiles: ["pexels-photo-4016846.jpeg"],
+          imageSvg:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset=".55" stop-color="#ff3b3b"/><stop offset="1" stop-color="#b8f04f"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter></defs><rect width="1200" height="800" rx="42" fill="#0f1722"/><path d="M140 260c120-170 370-240 560-160 140 58 230 190 230 340 0 185-140 330-330 330H260c-130 0-220-140-120-310z" fill="url(#g)" opacity=".14"/><g filter="url(#s)"><rect x="350" y="170" width="500" height="520" rx="38" fill="#121c29" stroke="rgba(255,255,255,.18)" stroke-width="6"/><rect x="390" y="220" width="420" height="120" rx="28" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><rect x="410" y="250" width="120" height="60" rx="18" fill="rgba(255,213,74,.18)" stroke="rgba(255,213,74,.30)" stroke-width="4"/><rect x="550" y="250" width="240" height="60" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="4"/><circle cx="450" cy="430" r="64" fill="rgba(255,59,59,.20)" stroke="rgba(255,59,59,.35)" stroke-width="6"/><circle cx="600" cy="430" r="64" fill="rgba(255,213,74,.18)" stroke="rgba(255,213,74,.32)" stroke-width="6"/><circle cx="750" cy="430" r="64" fill="rgba(184,240,79,.16)" stroke="rgba(184,240,79,.30)" stroke-width="6"/><path d="M470 520c55 40 120 60 190 60s135-20 190-60" fill="none" stroke="rgba(231,238,247,.70)" stroke-width="10" stroke-linecap="round"/><path d="M425 120c0 40-40 55-40 90s20 55 50 55 55-22 55-55-30-50-30-90c0-20-10-35-17-50-7 15-18 30-18 50z" fill="#ff3b3b" opacity=".75"/><path d="M600 105c0 45-42 60-42 98 0 36 24 55 55 55 32 0 56-22 56-55 0-40-32-52-32-98 0-22-10-38-20-55-8 17-17 33-17 55z" fill="#ffd54a" opacity=".75"/><path d="M770 120c0 40-40 55-40 90s20 55 50 55 55-22 55-55-30-50-30-90c0-20-10-35-17-50-7 15-18 30-18 50z" fill="#b8f04f" opacity=".75"/></g><text x="70" y="740" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="950" fill="rgba(231,238,247,.92)">Free Paint Mixing</text></svg>',
+          description:
+            "Free paint mixing service that allows customers to customize paint colors based on their preferred shade and finish.",
+          priceNote: "Free with paint purchase",
+          stock: "Available",
+          variants: [{ label: "Free mixing", price: 0 }],
+        },
+        {
+          id: "tools",
+          name: "Paint Brushes & Rollers",
+          category: "Painting Supplies",
+          imageAlt: "Paint roller and brushes",
+          imageFiles: ["3ZG0010-13_800x.webp", "146.webp"],
+          imageSvg:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset=".55" stop-color="#ff3b3b"/><stop offset="1" stop-color="#b8f04f"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter></defs><rect width="1200" height="800" rx="42" fill="#0f1722"/><circle cx="1060" cy="140" r="320" fill="url(#g)" opacity=".16"/><circle cx="240" cy="700" r="320" fill="#b8f04f" opacity=".10"/><g filter="url(#s)"><rect x="250" y="260" width="470" height="160" rx="38" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="6"/><rect x="270" y="280" width="430" height="120" rx="30" fill="#121c29" stroke="rgba(255,255,255,.18)" stroke-width="6"/><rect x="690" y="315" width="240" height="50" rx="25" fill="url(#g)" opacity=".92"/><rect x="880" y="322" width="260" height="36" rx="18" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><path d="M530 450c90 60 170 110 240 165 16 12 18 36 4 51l-40 45c-12 14-34 16-49 4-74-56-152-110-242-162-22-13-30-41-17-63l20-32c12-20 40-26 61-8z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="6"/><path d="M320 520c40-60 110-95 170-95 70 0 120 30 155 65 15 15 15 40 0 55-45 45-110 80-175 80-62 0-120-26-150-60-12-14-12-33 0-45z" fill="rgba(255,213,74,.14)" stroke="rgba(255,213,74,.26)" stroke-width="6"/><path d="M360 510c26-30 70-55 110-55 40 0 78 15 105 38" fill="none" stroke="rgba(231,238,247,.70)" stroke-width="10" stroke-linecap="round"/></g><text x="70" y="740" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="950" fill="rgba(231,238,247,.92)">Brushes & Rollers</text></svg>',
+          description:
+            "Durable painting tools designed for smooth and even paint application for home and commercial projects.",
+          priceNote: "₱15–₱120",
+          stock: "Available",
+          variants: [
+            { label: "Small brush", price: 15 },
+            { label: "Medium brush", price: 45 },
+            { label: "Large brush", price: 85 },
+            { label: "Foam roller", price: 60 },
+            { label: "Fabric roller", price: 120 },
+          ],
+        },
+        {
+          id: "hardware",
+          name: "Hardware Materials",
+          category: "Hardware Supplies",
+          imageAlt: "Hardware tools and fasteners",
+          imageFiles: ["hardware-materials-474.jpg"],
+          imageSvg:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset=".55" stop-color="#ff3b3b"/><stop offset="1" stop-color="#b8f04f"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter></defs><rect width="1200" height="800" rx="42" fill="#0f1722"/><path d="M180 120h520c140 0 250 110 250 250v260c0 110-90 200-200 200H250c-110 0-200-90-200-200V320c0-110 90-200 200-200z" fill="url(#g)" opacity=".12"/><g filter="url(#s)"><rect x="300" y="190" width="600" height="470" rx="38" fill="#121c29" stroke="rgba(255,255,255,.18)" stroke-width="6"/><path d="M430 330l120-120c18-18 48-18 66 0l54 54c18 18 18 48 0 66L550 450c-18 18-48 18-66 0l-54-54c-18-18-18-48 0-66z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="6"/><path d="M640 420l120-120c18-18 48-18 66 0l54 54c18 18 18 48 0 66L760 540c-18 18-48 18-66 0l-54-54c-18-18-18-48 0-66z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="6"/><path d="M420 520h360" stroke="rgba(231,238,247,.70)" stroke-width="12" stroke-linecap="round"/><path d="M460 560h280" stroke="rgba(231,238,247,.55)" stroke-width="10" stroke-linecap="round"/><circle cx="390" cy="250" r="34" fill="rgba(255,213,74,.18)" stroke="rgba(255,213,74,.30)" stroke-width="6"/><circle cx="810" cy="250" r="34" fill="rgba(184,240,79,.14)" stroke="rgba(184,240,79,.28)" stroke-width="6"/></g><text x="70" y="740" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="950" fill="rgba(231,238,247,.92)">Hardware Essentials</text></svg>',
+          description:
+            "Essential hardware products for construction, renovation, and repair needs of homeowners and contractors.",
+          priceNote: "Varies depending on item",
+          stock: "Available",
+          variants: [
+            { label: "Nails (pack)", price: 35 },
+            { label: "Screws (pack)", price: 45 },
+            { label: "Sandpaper (sheet)", price: 12 },
+            { label: "Putty (small)", price: 65 },
+            { label: "Adhesives (tube)", price: 95 },
+          ],
+        },
+        {
+          id: "spray",
+          name: "Spray Paints",
+          category: "Paints",
+          imageAlt: "Spray paint can",
+          imageFiles: ["ph-11134207-7ra0s-md5oo7ywvvwge4.jpg"],
+          imageSvg:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset=".55" stop-color="#ff3b3b"/><stop offset="1" stop-color="#b8f04f"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter></defs><rect width="1200" height="800" rx="42" fill="#0f1722"/><circle cx="260" cy="160" r="240" fill="#ffd54a" opacity=".14"/><circle cx="1060" cy="650" r="320" fill="#ff3b3b" opacity=".10"/><g filter="url(#s)"><rect x="455" y="170" width="290" height="520" rx="60" fill="#121c29" stroke="rgba(255,255,255,.18)" stroke-width="6"/><rect x="495" y="120" width="210" height="90" rx="36" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="6"/><rect x="535" y="95" width="130" height="55" rx="24" fill="url(#g)" opacity=".92"/><rect x="495" y="270" width="210" height="110" rx="30" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="4"/><text x="600" y="335" text-anchor="middle" font-family="ui-sans-serif,system-ui" font-size="28" font-weight="900" fill="rgba(231,238,247,.92)">SPRAY</text><path d="M760 210c110-30 210-10 300 60" fill="none" stroke="rgba(231,238,247,.22)" stroke-width="10" stroke-linecap="round"/><path d="M770 250c120-35 220-20 320 50" fill="none" stroke="rgba(255,213,74,.25)" stroke-width="10" stroke-linecap="round"/><path d="M780 290c130-40 240-28 340 40" fill="none" stroke="rgba(184,240,79,.20)" stroke-width="10" stroke-linecap="round"/></g><text x="70" y="740" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="950" fill="rgba(231,238,247,.92)">Spray Paints</text></svg>',
+          description:
+            "Easy-to-use spray paints ideal for metal, wood, plastic, and DIY projects with smooth and fast-drying coverage.",
+          priceNote: "₱110–₱250 per can",
+          stock: "Available",
+          variants: [
+            { label: "Glossy", price: 110 },
+            { label: "Matte", price: 110 },
+            { label: "Metallic", price: 160 },
+            { label: "High-heat", price: 250 },
+          ],
+        },
+      ];
+
+      const ORDER_STATUSES = [
+        "Pending",
+        "Confirmed",
+        "Preparing",
+        "Delivered",
+        "Cancelled",
+      ];
+
+      function formatMoney(amount) {
+        const safe = Number.isFinite(amount) ? amount : 0;
+        return (
+          CURRENCY +
+          safe.toLocaleString("en-PH", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          })
+        );
+      }
+
+      function safeJsonParse(value, fallback) {
+        try {
+          return JSON.parse(value);
+        } catch {
+          return fallback;
+        }
+      }
+
+      function useLocalStorageState(key, initialValue) {
+        const [state, setState] = useState(() => {
+          const raw = localStorage.getItem(key);
+          if (raw == null) return initialValue;
+          return safeJsonParse(raw, initialValue);
+        });
+        useEffect(() => {
+          localStorage.setItem(key, JSON.stringify(state));
+        }, [key, state]);
+        return [state, setState];
+      }
+
+      function svgToDataUrl(svgString) {
+        const svg = String(svgString || "");
+        return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+      }
+
+      function getStoredProductImageSrc(productId, productImages, fallbackSvg, product) {
+        const src = productImages && productImages[productId];
+        if (src && /^data:image\//.test(src)) return src;
+        const files = product && Array.isArray(product.imageFiles) ? product.imageFiles : [];
+        if (files.length) return files[0];
+        return svgToDataUrl(fallbackSvg);
+      }
+
+      function uid() {
+        // Stable-enough for local usage: timestamp + random
+        return (
+          Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 9)
+        );
+      }
+
+      function nowISO() {
+        return new Date().toISOString();
+      }
+
+      function onlyDigits(s) {
+        return String(s || "").replace(/\D+/g, "");
+      }
+
+      function openFacebook() {
+        window.open("https://" + BUSINESS.facebook, "_blank", "noopener,noreferrer");
+      }
+
+      function downloadCsv(filename, rows) {
+        const esc = (v) => {
+          const s = String(v ?? "");
+          if (/[,"\n]/.test(s)) return '"' + s.replaceAll('"', '""') + '"';
+          return s;
+        };
+        const csv = rows.map((r) => r.map(esc).join(",")).join("\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function TopBar({ page, setPage, isMobileOpen, setMobileOpen, onAdmin }) {
+        const link = (p, label) =>
+          React.createElement(
+            "a",
+            {
+              href: "#",
+              className: page === p ? "active" : "",
+              onClick: (e) => {
+                e.preventDefault();
+                setMobileOpen(false);
+                setPage(p);
+              },
+            },
+            label
+          );
+
+        return React.createElement(
+          "div",
+          { className: "topbar" },
+          React.createElement(
+            "div",
+            { className: "container" },
+            React.createElement(
+              "div",
+              { className: "topbarInner" },
+              React.createElement(
+                "div",
+                { className: "brand" },
+                React.createElement("div", { className: "logo", "aria-hidden": true }),
+                React.createElement(
+                  "div",
+                  null,
+                  React.createElement("div", null, BUSINESS.name),
+                  React.createElement(
+                    "div",
+                    { className: "tiny" },
+                    BUSINESS.location + " • " + BUSINESS.hours
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "tag" },
+                React.createElement("span", { className: "tagDot" }),
+                React.createElement("span", null, "FREE DELIVERY within Antique")
+              ),
+              React.createElement(
+                "div",
+                { className: "nav" },
+                link("home", "Home"),
+                link("products", "Products & Services"),
+                link("order", "Order"),
+                React.createElement(
+                  "button",
+                  {
+                    onClick: () => {
+                      setMobileOpen(false);
+                      onAdmin();
+                    },
+                    title: "Admin dashboard",
+                  },
+                  "Admin"
+                )
+              ),
+              React.createElement(
+                "button",
+                {
+                  className: "hamburger",
+                  onClick: () => setMobileOpen(!isMobileOpen),
+                  "aria-label": isMobileOpen ? "Close menu" : "Open menu",
+                },
+                isMobileOpen ? "✕" : "☰"
+              )
+            ),
+            isMobileOpen
+              ? React.createElement(
+                  "div",
+                  { className: "mobileMenu" },
+                  link("home", "Home"),
+                  link("products", "Products & Services"),
+                  link("order", "Order"),
+                  React.createElement(
+                    "button",
+                    { onClick: () => { setMobileOpen(false); onAdmin(); } },
+                    "Admin"
+                  )
+                )
+              : null
+          )
+        );
+      }
+
+      function HomePage({ goProducts, goOrder }) {
+        return React.createElement(
+          React.Fragment,
+          null,
+          React.createElement(
+            "div",
+            { className: "container" },
+            React.createElement(
+              "div",
+              { className: "banner" },
+              React.createElement(
+                "div",
+                null,
+                React.createElement("strong", null, "Promo: "),
+                React.createElement(
+                  "span",
+                  { className: "muted" },
+                  "FREE DELIVERY within Antique • Free paint mixing with paint purchase"
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "badge" },
+                React.createElement("span", null, "Payments:"),
+                React.createElement(
+                  "span",
+                  null,
+                  BUSINESS.payments.join(" • ")
+                )
+              )
+            ),
+              React.createElement(
+                "div",
+                { className: "hero" },
+                React.createElement(
+                  "div",
+                  { className: "heroCard" },
+                  React.createElement(
+                    "div",
+                    { className: "heroPhotoFrame" },
+                    React.createElement("img", {
+                      src: "691156547_1515119400269099_2058708362903477700_n.jpg",
+                      alt: "Chao Paint Center storefront signage",
+                      loading: "lazy",
+                    })
+                  ),
+                  React.createElement(
+                    "h1",
+                    { className: "hTitle" },
+                    "Quality Paints for Homes, Business and Big Ideas"
+                  ),
+                React.createElement(
+                  "p",
+                  { className: "hSub" },
+                  "Premium paints and expert solutions for every residential and commercial project"
+                ),
+                React.createElement(
+                  "div",
+                  { className: "ctaRow" },
+                  React.createElement(
+                    "button",
+                    { className: "btn primary", onClick: goProducts },
+                    "Bili Na!"
+                  ),
+                  React.createElement(
+                    "button",
+                    { className: "btn", onClick: goOrder },
+                    "Visit our Store!"
+                  ),
+                  React.createElement(
+                    "button",
+                    { className: "btn", onClick: openFacebook },
+                    "Message on Facebook"
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "card" },
+                React.createElement(
+                  "div",
+                  {
+                    style: {
+                      borderRadius: 16,
+                      overflow: "hidden",
+                      border: "1px solid rgba(255,255,255,.10)",
+                      background: "rgba(0,0,0,.22)",
+                      marginBottom: 14,
+                    },
+                  },
+                  React.createElement("img", {
+                    src: "688356491_823416120432686_6394736276691156831_n.jpg",
+                    alt: "Chao Paint Center store shelves",
+                    loading: "lazy",
+                    style: {
+                      width: "100%",
+                      height: 190,
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      display: "block",
+                    },
+                  })
+                ),
+                React.createElement(
+                  "div",
+                  { className: "grid2" },
+                  React.createElement(
+                    "div",
+                    { className: "kpi" },
+                    React.createElement("div", { className: "label" }, "Location"),
+                    React.createElement(
+                      "div",
+                      { className: "value" },
+                      "Sibalom Public Market"
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "sub" },
+                      BUSINESS.location
+                    )
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "kpi" },
+                    React.createElement("div", { className: "label" }, "Contact"),
+                    React.createElement(
+                      "div",
+                      { className: "value" },
+                      BUSINESS.phone
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "sub" },
+                      BUSINESS.email
+                    )
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "kpi" },
+                    React.createElement("div", { className: "label" }, "Hours"),
+                    React.createElement(
+                      "div",
+                      { className: "value" },
+                      "Mon–Sat"
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "sub" },
+                      "8:00 AM – 5:00 PM"
+                    )
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "kpi" },
+                    React.createElement("div", { className: "label" }, "Delivery"),
+                    React.createElement(
+                      "div",
+                      { className: "value" },
+                      "FREE"
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "sub" },
+                      "Within Antique"
+                    )
+                  )
+                ),
+                React.createElement(
+                  "p",
+                  { className: "help" },
+                  "Tip: For urgent orders, message us on Facebook or call ",
+                  BUSINESS.phone,
+                  "."
+                )
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "section" },
+              React.createElement("h2", { className: "sectionTitle" }, "About the Business"),
+              React.createElement(
+                "div",
+                { className: "split" },
+                React.createElement(
+                  "div",
+                  { className: "card" },
+                  React.createElement(
+                    "p",
+                    { className: "muted", style: { marginTop: 0, fontWeight: 700 } },
+                    "Chao Paint Center is a retail and wholesale business located at Sibalom Public Market that offers paints, painting supplies, and hardware materials. Established on August 8, 2020, and managed by Mary Grace C. Magbanua, the business is known for its friendly service and free paint mixing services. It provides quality products at affordable prices for homeowners and contractors while continuing to build trust in the community."
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "pMeta" },
+                    React.createElement(
+                      "span",
+                      { className: "pill" },
+                      "Retail + Wholesale"
+                    ),
+                    React.createElement(
+                      "span",
+                      { className: "pill" },
+                      "Free Paint Mixing"
+                    ),
+                    React.createElement(
+                      "span",
+                      { className: "pill" },
+                      "Friendly Service"
+                    )
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "card" },
+                  React.createElement(
+                    "h3",
+                    { style: { margin: "0 0 8px", fontWeight: 950 } },
+                    "Why Choose Us"
+                  ),
+                  React.createElement(
+                    "ul",
+                    { className: "list" },
+                    React.createElement(
+                      "li",
+                      { className: "li" },
+                      React.createElement("div", { className: "liIcon" }, "✓"),
+                      React.createElement(
+                        "div",
+                        null,
+                        React.createElement("strong", null, "High Quality Paints"),
+                        React.createElement(
+                          "p",
+                          null,
+                          "Trusted brands and durable finishes for indoor and outdoor use."
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      "li",
+                      { className: "li" },
+                      React.createElement("div", { className: "liIcon" }, "✓"),
+                      React.createElement(
+                        "div",
+                        null,
+                        React.createElement("strong", null, "Affordable Prices"),
+                        React.createElement(
+                          "p",
+                          null,
+                          "Great value options for homeowners and contractors."
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      "li",
+                      { className: "li" },
+                      React.createElement("div", { className: "liIcon" }, "✓"),
+                      React.createElement(
+                        "div",
+                        null,
+                        React.createElement("strong", null, "Wide Selection of Colors"),
+                        React.createElement(
+                          "p",
+                          null,
+                          "Mix and match your perfect shade with our free mixing support."
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "section" },
+              React.createElement(
+                "h2",
+                { className: "sectionTitle" },
+                "Quick Contact"
+              ),
+              React.createElement(
+                "div",
+                { className: "cards" },
+                React.createElement(
+                  "div",
+                  { className: "pCard" },
+                  React.createElement("h3", { className: "pName" }, "Call / Text"),
+                  React.createElement("p", { className: "pDesc" }, BUSINESS.phone),
+                  React.createElement(
+                    "div",
+                    { className: "pActions" },
+                    React.createElement(
+                      "a",
+                      { className: "btn small primary", href: "tel:" + BUSINESS.phone },
+                      "Call now"
+                    )
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "pCard" },
+                  React.createElement("h3", { className: "pName" }, "Email"),
+                  React.createElement("p", { className: "pDesc" }, BUSINESS.email),
+                  React.createElement(
+                    "div",
+                    { className: "pActions" },
+                    React.createElement(
+                      "a",
+                      {
+                        className: "btn small",
+                        href: "mailto:" + BUSINESS.email,
+                      },
+                      "Send email"
+                    )
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "pCard" },
+                  React.createElement("h3", { className: "pName" }, "Facebook"),
+                  React.createElement("p", { className: "pDesc" }, BUSINESS.facebook),
+                  React.createElement(
+                    "div",
+                    { className: "pActions" },
+                    React.createElement(
+                      "button",
+                      { className: "btn small", onClick: openFacebook },
+                      "Open page"
+                    )
+                  )
+                )
+              )
+            )
+          ),
+          React.createElement(
+            "button",
+            { className: "floatBtn", onClick: openFacebook, title: "Message us on Facebook" },
+            "Messenger",
+            React.createElement("span", { className: "tiny" }, "Quick chat")
+          )
+        );
+      }
+
+      function ProductsPage({ addToCart, productImages }) {
+        const [previewSrc, setPreviewSrc] = useState({});
+        return React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "section" },
+            React.createElement("h2", { className: "sectionTitle" }, "Products & Services"),
+            React.createElement(
+              "p",
+              { className: "muted", style: { marginTop: 0, fontWeight: 700 } },
+              "Browse our best-sellers and essentials. Add items to your order, then proceed to checkout."
+            ),
+            React.createElement(
+              "div",
+              { className: "cards" },
+              ...PRODUCTS.map((p) =>
+                React.createElement(
+                  "div",
+                  { className: "pCard", key: p.id },
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        borderRadius: 16,
+                        overflow: "hidden",
+                        border: "1px solid rgba(255,255,255,.10)",
+                        background: "rgba(0,0,0,.22)",
+                      },
+                    },
+                    React.createElement("img", {
+                      src:
+                        previewSrc[p.id] ||
+                        getStoredProductImageSrc(p.id, productImages, p.imageSvg, p),
+                      alt: p.imageAlt || p.name,
+                      loading: "lazy",
+                      style: {
+                        width: "100%",
+                        height: 160,
+                        objectFit: "contain",
+                        objectPosition: "center",
+                        display: "block",
+                        padding: 10,
+                        background: "rgba(255,255,255,.06)",
+                      },
+                    })
+                  ),
+                  Array.isArray(p.imageFiles) && p.imageFiles.length > 1
+                    ? React.createElement(
+                        "div",
+                        { style: { display: "flex", gap: 10, marginTop: 10, flexWrap: "wrap" } },
+                        ...p.imageFiles.map((src) =>
+                          React.createElement("img", {
+                            key: src,
+                            src,
+                            alt: (p.imageAlt || p.name) + " thumbnail",
+                            loading: "lazy",
+                            onClick: () =>
+                              setPreviewSrc((prev) => ({ ...(prev || {}), [p.id]: src })),
+                            title: "Click to preview",
+                            style: {
+                              width: 64,
+                              height: 44,
+                              objectFit: "contain",
+                              objectPosition: "center",
+                              borderRadius: 12,
+                              border: "1px solid rgba(255,255,255,.12)",
+                              cursor: "pointer",
+                              background: "rgba(0,0,0,.20)",
+                              padding: 6,
+                            },
+                          })
+                        )
+                      )
+                    : null,
+                  React.createElement(
+                    "div",
+                    { className: "pTop" },
+                    React.createElement("h3", { className: "pName" }, p.name),
+                    React.createElement("span", { className: "pill" }, p.category)
+                  ),
+                  React.createElement("p", { className: "pDesc" }, p.description),
+                  React.createElement(
+                    "div",
+                    { className: "pMeta" },
+                    React.createElement(
+                      "span",
+                      { className: "pill" },
+                      React.createElement("span", { className: "price" }, p.priceNote)
+                    ),
+                    React.createElement(
+                      "span",
+                      {
+                        className:
+                          "pill " +
+                          (p.stock === "Available"
+                            ? "success"
+                            : p.stock === "Pre-order only"
+                            ? "warn"
+                            : "danger"),
+                      },
+                      "Stock: " + p.stock
+                    )
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "pActions" },
+                    React.createElement(
+                      "button",
+                      {
+                        className: "btn small primary",
+                        onClick: () => addToCart(p.id),
+                      },
+                      "Add to order"
+                    )
+                  ),
+                  p.variants?.length
+                    ? React.createElement(
+                        "div",
+                        { className: "help" },
+                        "Variants: ",
+                        p.variants.map((v) => v.label).join(" • ")
+                      )
+                    : null
+                )
+              )
+            )
+          )
+        );
+      }
+
+      function CartEditor({ cart, setCart, productImages }) {
+        const items = useMemo(() => {
+          const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
+          return Object.values(cart || {})
+            .filter((it) => it && it.qty > 0 && byId.has(it.productId))
+            .map((it) => {
+              const p = byId.get(it.productId);
+              const variant = p.variants?.find((v) => v.label === it.variantLabel) || p.variants?.[0];
+              const unitPrice = Number.isFinite(it.unitPrice) ? it.unitPrice : (variant?.price ?? 0);
+              return { ...it, product: p, variant, unitPrice };
+            });
+        }, [cart]);
+
+        const subtotal = useMemo(
+          () => items.reduce((sum, it) => sum + it.qty * it.unitPrice, 0),
+          [items]
+        );
+
+        function setItem(productId, patch) {
+          setCart((prev) => {
+            const next = { ...(prev || {}) };
+            const current = next[productId] || { productId, qty: 0 };
+            next[productId] = { ...current, ...patch };
+            if (!next[productId].qty || next[productId].qty <= 0) delete next[productId];
+            return next;
+          });
+        }
+
+        if (!items.length) {
+          return React.createElement(
+            "div",
+            { className: "cart" },
+            React.createElement("strong", null, "Your order is empty."),
+            React.createElement(
+              "div",
+              { className: "help" },
+              "Add products from the Products & Services page."
+            )
+          );
+        }
+
+        return React.createElement(
+          "div",
+          { className: "cart" },
+          items.map((it) =>
+            React.createElement(
+              "div",
+              { className: "cartRow", key: it.productId },
+              React.createElement(
+                "div",
+                { className: "left" },
+                React.createElement(
+                  "div",
+                  { style: { display: "flex", alignItems: "center", gap: 10 } },
+                  React.createElement("img", {
+                    src: getStoredProductImageSrc(
+                      it.productId,
+                      productImages,
+                      it.product.imageSvg,
+                      it.product
+                    ),
+                    alt: it.product.imageAlt || it.product.name,
+                    loading: "lazy",
+                    style: {
+                      width: 42,
+                      height: 30,
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      borderRadius: 10,
+                      border: "1px solid rgba(255,255,255,.10)",
+                      background: "rgba(255,255,255,.06)",
+                      padding: 4,
+                    },
+                  }),
+                  React.createElement("div", { className: "name" }, it.product.name)
+                ),
+                React.createElement(
+                  "div",
+                  { className: "sub" },
+                  "Variant: ",
+                  React.createElement(
+                    "select",
+                    {
+                      value: it.variantLabel || it.variant?.label || "",
+                      onChange: (e) => {
+                        const label = e.target.value;
+                        const v = it.product.variants?.find((x) => x.label === label);
+                        setItem(it.productId, {
+                          variantLabel: label,
+                          unitPrice: v?.price ?? 0,
+                        });
+                      },
+                      style: { maxWidth: 280, marginTop: 6 },
+                    },
+                    ...(it.product.variants || [{ label: "Default", price: 0 }]).map((v) =>
+                      React.createElement(
+                        "option",
+                        { key: v.label, value: v.label },
+                        v.label + (v.price ? " (" + formatMoney(v.price) + ")" : " (Free)")
+                      )
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "qtyRow" },
+                React.createElement(
+                  "button",
+                  {
+                    className: "qtyBtn",
+                    onClick: () => setItem(it.productId, { qty: Math.max(0, it.qty - 1) }),
+                    "aria-label": "Decrease quantity",
+                  },
+                  "−"
+                ),
+                React.createElement("div", { className: "qtyVal" }, it.qty),
+                React.createElement(
+                  "button",
+                  {
+                    className: "qtyBtn",
+                    onClick: () => setItem(it.productId, { qty: it.qty + 1 }),
+                    "aria-label": "Increase quantity",
+                  },
+                  "+"
+                )
+              )
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "cartRow" },
+            React.createElement("div", { className: "left" }, React.createElement("div", { className: "name" }, "Estimated total")),
+            React.createElement("div", { className: "name" }, formatMoney(subtotal))
+          ),
+          React.createElement(
+            "div",
+            { className: "help" },
+            "Note: Totals are estimates based on selected variants. Final pricing can be confirmed during order validation."
+          )
+        );
+      }
+
+      function OrderPage({ cart, setCart, submitOrder, lastOrder, productImages }) {
+        const [fullName, setFullName] = useState("");
+        const [contact, setContact] = useState("");
+        const [address, setAddress] = useState("");
+        const [pickup, setPickup] = useState(false);
+        const [payment, setPayment] = useState(BUSINESS.payments[0]);
+        const [deliveryDate, setDeliveryDate] = useState("");
+        const [notes, setNotes] = useState("");
+        const [error, setError] = useState("");
+
+        const itemsForSummary = useMemo(() => {
+          const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
+          return Object.values(cart || {})
+            .filter((it) => it && it.qty > 0 && byId.has(it.productId))
+            .map((it) => {
+              const p = byId.get(it.productId);
+              const variant = p.variants?.find((v) => v.label === it.variantLabel) || p.variants?.[0];
+              const unitPrice = Number.isFinite(it.unitPrice) ? it.unitPrice : (variant?.price ?? 0);
+              return {
+                productId: it.productId,
+                name: p.name,
+                qty: it.qty,
+                variantLabel: it.variantLabel || variant?.label || "",
+                unitPrice,
+                lineTotal: it.qty * unitPrice,
+              };
+            });
+        }, [cart]);
+
+        const total = useMemo(
+          () => itemsForSummary.reduce((sum, it) => sum + it.lineTotal, 0),
+          [itemsForSummary]
+        );
+
+        useEffect(() => setContact((c) => (c ? onlyDigits(c) : "")), []);
+
+        function validate() {
+          if (!fullName.trim()) return "Please enter your full name.";
+          const digits = onlyDigits(contact);
+          if (!digits || digits.length < 10) return "Please enter a valid contact number.";
+          if (!pickup && !address.trim()) return "Please enter your delivery address (or choose Pick-up).";
+          if (!payment) return "Please select a payment method.";
+          if (!deliveryDate) return "Please select a preferred delivery date.";
+          if (!itemsForSummary.length) return "Please add at least one item to your order.";
+          return "";
+        }
+
+        function onSubmit(e) {
+          e.preventDefault();
+          const msg = validate();
+          if (msg) {
+            setError(msg);
+            return;
+          }
+          setError("");
+          const order = {
+            id: uid(),
+            number: "CP-" + Math.floor(Math.random() * 900000 + 100000),
+            createdAt: nowISO(),
+            customer: {
+              fullName: fullName.trim(),
+              contact: onlyDigits(contact),
+              address: pickup ? "Pick-up" : address.trim(),
+            },
+            items: itemsForSummary,
+            totalAmount: total,
+            paymentMethod: payment,
+            preferredDeliveryDate: deliveryDate,
+            notes: notes.trim(),
+            status: "Pending",
+          };
+          submitOrder(order);
+          setCart({});
+          setFullName("");
+          setContact("");
+          setAddress("");
+          setPickup(false);
+          setPayment(BUSINESS.payments[0]);
+          setDeliveryDate("");
+          setNotes("");
+        }
+
+        if (lastOrder) {
+          return React.createElement(
+            "div",
+            { className: "container" },
+            React.createElement(
+              "div",
+              { className: "section" },
+              React.createElement("h2", { className: "sectionTitle" }, "Order Received"),
+              React.createElement(
+                "div",
+                { className: "card" },
+                React.createElement(
+                  "p",
+                  { style: { marginTop: 0, fontWeight: 900 } },
+                  "Thank you, ",
+                  lastOrder.customer.fullName,
+                  "! Your order has been received."
+                ),
+                React.createElement(
+                  "p",
+                  { className: "muted", style: { fontWeight: 700 } },
+                  "We will contact you within 24 hours to confirm. For urgent orders, message us on Facebook or call ",
+                  BUSINESS.phone,
+                  "."
+                ),
+                React.createElement(
+                  "div",
+                  { className: "pMeta" },
+                  React.createElement("span", { className: "pill" }, "Order No: " + lastOrder.number),
+                  React.createElement("span", { className: "pill" }, "Status: " + lastOrder.status),
+                  React.createElement("span", { className: "pill" }, "Total: " + formatMoney(lastOrder.totalAmount))
+                ),
+                React.createElement("h3", { style: { marginTop: 18, marginBottom: 10 } }, "Order Summary"),
+                React.createElement(
+                  "div",
+                  { className: "cart" },
+                  lastOrder.items.map((it, idx) =>
+                    React.createElement(
+                      "div",
+                      { className: "cartRow", key: idx },
+                      React.createElement(
+                        "div",
+                        { className: "left" },
+                        React.createElement(
+                          "div",
+                          { style: { display: "flex", alignItems: "center", gap: 10 } },
+                          React.createElement("img", {
+                            src: getStoredProductImageSrc(
+                              it.productId,
+                              productImages,
+                              (PRODUCTS.find((p) => p.id === it.productId)?.imageSvg) || "",
+                              PRODUCTS.find((p) => p.id === it.productId)
+                            ),
+                            alt:
+                              (PRODUCTS.find((p) => p.id === it.productId)?.imageAlt) ||
+                              it.name,
+                            loading: "lazy",
+                            style: {
+                              width: 42,
+                              height: 30,
+                              objectFit: "contain",
+                              objectPosition: "center",
+                              borderRadius: 10,
+                              border: "1px solid rgba(255,255,255,.10)",
+                              background: "rgba(255,255,255,.06)",
+                              padding: 4,
+                            },
+                          }),
+                          React.createElement("div", { className: "name" }, it.name)
+                        ),
+                        React.createElement(
+                          "div",
+                          { className: "sub" },
+                          it.variantLabel ? "Variant: " + it.variantLabel : null
+                        )
+                      ),
+                      React.createElement(
+                        "div",
+                        { className: "name" },
+                        it.qty + " × " + formatMoney(it.unitPrice)
+                      )
+                    )
+                  ),
+                  React.createElement(
+                    "div",
+                    { className: "cartRow" },
+                    React.createElement("div", { className: "left" }, React.createElement("div", { className: "name" }, "Total")),
+                    React.createElement("div", { className: "name" }, formatMoney(lastOrder.totalAmount))
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "pActions", style: { marginTop: 14 } },
+                  React.createElement(
+                    "button",
+                    { className: "btn small primary", onClick: openFacebook },
+                    "Message on Facebook"
+                  )
+                )
+              )
+            )
+          );
+        }
+
+        return React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "section" },
+            React.createElement("h2", { className: "sectionTitle" }, "Ordering / Checkout"),
+            React.createElement(
+              "div",
+              { className: "split" },
+              React.createElement(
+                "div",
+                { className: "card" },
+                React.createElement(
+                  "form",
+                  { onSubmit },
+                  React.createElement(
+                    "div",
+                    { className: "formGrid" },
+                    React.createElement(
+                      "div",
+                      null,
+                      React.createElement("label", null, "Customer Full Name"),
+                      React.createElement("input", {
+                        value: fullName,
+                        onChange: (e) => setFullName(e.target.value),
+                        placeholder: "e.g., Juan Dela Cruz",
+                        autoComplete: "name",
+                      })
+                    ),
+                    React.createElement(
+                      "div",
+                      null,
+                      React.createElement("label", null, "Contact Number"),
+                      React.createElement("input", {
+                        value: contact,
+                        onChange: (e) => setContact(onlyDigits(e.target.value)),
+                        placeholder: "e.g., 09XXXXXXXXX",
+                        inputMode: "numeric",
+                        autoComplete: "tel",
+                      }),
+                      React.createElement(
+                        "div",
+                        { className: "help" },
+                        "GCash/Maya: ",
+                        BUSINESS.gcash
+                      )
+                    ),
+                    React.createElement(
+                      "div",
+                      { style: { gridColumn: "1 / -1" } },
+                      React.createElement(
+                        "div",
+                        { style: { display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" } },
+                        React.createElement(
+                          "label",
+                          { style: { marginBottom: 0 } },
+                          React.createElement("input", {
+                            type: "checkbox",
+                            checked: pickup,
+                            onChange: (e) => setPickup(e.target.checked),
+                            style: { width: 18, height: 18, marginRight: 10 },
+                          }),
+                          "Pick-up instead of delivery"
+                        ),
+                        React.createElement(
+                          "span",
+                          { className: "tiny" },
+                          pickup ? "Pick-up at Sibalom Public Market" : BUSINESS.shipping
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      "div",
+                      { style: { gridColumn: "1 / -1" } },
+                      React.createElement("label", null, pickup ? "Pick-up Details" : "Delivery Address"),
+                      React.createElement("textarea", {
+                        value: address,
+                        onChange: (e) => setAddress(e.target.value),
+                        placeholder: pickup ? "Optional notes for pick-up" : "House/Street, Barangay, Municipality, Landmark",
+                      })
+                    ),
+                    React.createElement(
+                      "div",
+                      null,
+                      React.createElement("label", null, "Preferred Payment Method"),
+                      React.createElement(
+                        "select",
+                        { value: payment, onChange: (e) => setPayment(e.target.value) },
+                        BUSINESS.payments.map((p) =>
+                          React.createElement("option", { key: p, value: p }, p)
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      "div",
+                      null,
+                      React.createElement("label", null, "Preferred Delivery Date"),
+                      React.createElement("input", {
+                        type: "date",
+                        value: deliveryDate,
+                        onChange: (e) => setDeliveryDate(e.target.value),
+                      })
+                    ),
+                    React.createElement(
+                      "div",
+                      { style: { gridColumn: "1 / -1" } },
+                      React.createElement("label", null, "Notes (optional)"),
+                      React.createElement("textarea", {
+                        value: notes,
+                        onChange: (e) => setNotes(e.target.value),
+                        placeholder: "Color shade, finish (matte/gloss), quantity notes, landmarks, etc.",
+                      })
+                    )
+                  ),
+                  error
+                    ? React.createElement(
+                        "div",
+                        { className: "card danger", style: { padding: 12, marginTop: 12 } },
+                        React.createElement("strong", null, "Fix this: "),
+                        React.createElement("span", null, error)
+                      )
+                    : null,
+                  React.createElement(
+                    "div",
+                    { className: "pActions", style: { marginTop: 12 } },
+                    React.createElement(
+                      "button",
+                      { className: "btn primary", type: "submit" },
+                      "Submit Order"
+                    ),
+                    React.createElement(
+                      "button",
+                      {
+                        className: "btn",
+                        type: "button",
+                        onClick: () => setCart({}),
+                      },
+                      "Clear Items"
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                null,
+                React.createElement("h3", { className: "sectionTitle", style: { fontSize: 18, marginTop: 0 } }, "Items"),
+                React.createElement(CartEditor, { cart, setCart, productImages }),
+                React.createElement(
+                  "div",
+                  { className: "help" },
+                  "Total estimate: ",
+                  React.createElement("strong", null, formatMoney(total))
+                )
+              )
+            )
+          )
+        );
+      }
+
+      function AdminLogin({ onSuccess, onCancel }) {
+        const [pw, setPw] = useState("");
+        const [err, setErr] = useState("");
+        const ref = useRef(null);
+        useEffect(() => {
+          ref.current?.focus?.();
+        }, []);
+
+        return React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "section" },
+            React.createElement("h2", { className: "sectionTitle" }, "Admin"),
+            React.createElement(
+              "div",
+              { className: "card", style: { maxWidth: 520 } },
+              React.createElement(
+                "p",
+                { className: "muted", style: { marginTop: 0, fontWeight: 700 } },
+                "Enter the admin password to access the dashboard."
+              ),
+              React.createElement("label", null, "Password"),
+              React.createElement("input", {
+                ref,
+                type: "password",
+                value: pw,
+                onChange: (e) => setPw(e.target.value),
+                onKeyDown: (e) => {
+                  if (e.key === "Enter") {
+                    const ok = pw === BUSINESS.adminPassword;
+                    if (ok) onSuccess();
+                    else setErr("Incorrect password.");
+                  }
+                },
+                placeholder: "••••••••",
+              }),
+              err
+                ? React.createElement(
+                    "div",
+                    { className: "help", style: { color: "rgba(255,59,59,.92)", fontWeight: 850 } },
+                    err
+                  )
+                : React.createElement(
+                    "div",
+                    { className: "help" },
+                    "Tip: Change the password in the code before sharing publicly."
+                  ),
+              React.createElement(
+                "div",
+                { className: "pActions", style: { marginTop: 12 } },
+                React.createElement(
+                  "button",
+                  {
+                    className: "btn primary",
+                    onClick: () => {
+                      const ok = pw === BUSINESS.adminPassword;
+                      if (ok) onSuccess();
+                      else setErr("Incorrect password.");
+                    },
+                  },
+                  "Unlock"
+                ),
+                React.createElement(
+                  "button",
+                  { className: "btn", onClick: onCancel },
+                  "Cancel"
+                )
+              )
+            )
+          )
+        );
+      }
+
+      function Analytics({ orders }) {
+        const { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line, Legend } =
+          (window.Recharts || {});
+
+        const hasCharts =
+          ResponsiveContainer && PieChart && Pie && Cell && Tooltip && BarChart && Bar && XAxis && YAxis && CartesianGrid && LineChart && Line && Legend;
+
+        const stats = useMemo(() => {
+          const totalRevenue = orders.reduce((s, o) => s + (o.totalAmount || 0), 0);
+          const now = new Date();
+          const ym = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
+          const thisMonthRevenue = orders
+            .filter((o) => String(o.createdAt || "").slice(0, 7) === ym)
+            .reduce((s, o) => s + (o.totalAmount || 0), 0);
+          const avgOrderValue = orders.length ? totalRevenue / orders.length : 0;
+
+          const byProduct = new Map();
+          const byStatus = new Map();
+          const byDay = new Map();
+          for (const o of orders) {
+            byStatus.set(o.status || "Pending", (byStatus.get(o.status || "Pending") || 0) + 1);
+            const day = String(o.createdAt || "").slice(0, 10);
+            if (day) byDay.set(day, (byDay.get(day) || 0) + 1);
+            for (const it of o.items || []) {
+              const key = it.name || it.productId || "Unknown";
+              byProduct.set(key, (byProduct.get(key) || 0) + (it.qty || 0));
+            }
+          }
+
+          const bestSelling = [...byProduct.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 7)
+            .map(([name, qty]) => ({ name, qty }));
+
+          const statusData = ORDER_STATUSES.map((s) => ({
+            name: s,
+            value: byStatus.get(s) || 0,
+          }));
+
+          const dayData = [...byDay.entries()]
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .slice(-14)
+            .map(([date, orders]) => ({ date, orders }));
+
+          return {
+            totalRevenue,
+            thisMonthRevenue,
+            totalOrders: orders.length,
+            avgOrderValue,
+            bestSelling,
+            statusData,
+            dayData,
+          };
+        }, [orders]);
+
+        const PIE_COLORS = ["#ffd54a", "#ff3b3b", "#b8f04f", "#7ab6ff", "#9f7bff"];
+
+        return React.createElement(
+          "div",
+          { className: "section" },
+          React.createElement("h3", { className: "sectionTitle" }, "Business Analytics"),
+          React.createElement(
+            "div",
+            { className: "grid2" },
+            React.createElement(
+              "div",
+              { className: "kpi" },
+              React.createElement("div", { className: "label" }, "Total Revenue (All time)"),
+              React.createElement("div", { className: "value" }, formatMoney(stats.totalRevenue)),
+              React.createElement("div", { className: "sub" }, "This month: " + formatMoney(stats.thisMonthRevenue))
+            ),
+            React.createElement(
+              "div",
+              { className: "kpi" },
+              React.createElement("div", { className: "label" }, "Total Orders"),
+              React.createElement("div", { className: "value" }, String(stats.totalOrders)),
+              React.createElement("div", { className: "sub" }, "Average order: " + formatMoney(stats.avgOrderValue))
+            )
+          ),
+          !hasCharts
+            ? React.createElement(
+                "div",
+                { className: "card warn", style: { marginTop: 12 } },
+                React.createElement("strong", null, "Charts failed to load."),
+                React.createElement(
+                  "div",
+                  { className: "help" },
+                  "If you are offline, Recharts may not be available. The dashboard still works; charts will render when the Recharts script loads."
+                )
+              )
+            : React.createElement(
+                "div",
+                { className: "split", style: { marginTop: 12 } },
+                React.createElement(
+                  "div",
+                  { className: "card" },
+                  React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Best-Selling Products"),
+                  React.createElement(
+                    "div",
+                    { style: { width: "100%", height: 280 } },
+                    React.createElement(
+                      ResponsiveContainer,
+                      null,
+                      React.createElement(
+                        BarChart,
+                        { data: stats.bestSelling, margin: { top: 10, right: 10, left: -10, bottom: 0 } },
+                        React.createElement(CartesianGrid, { stroke: "rgba(255,255,255,.08)" }),
+                        React.createElement(XAxis, { dataKey: "name", tick: { fill: "rgba(231,238,247,.70)", fontSize: 11 }, interval: 0, angle: -18, textAnchor: "end", height: 66 }),
+                        React.createElement(YAxis, { tick: { fill: "rgba(231,238,247,.70)", fontSize: 11 } }),
+                        React.createElement(Tooltip, { contentStyle: { background: "rgba(7,10,15,.92)", border: "1px solid rgba(255,255,255,.12)", borderRadius: 12, color: "#e7eef7" } }),
+                        React.createElement(Bar, { dataKey: "qty", fill: "#ffd54a", radius: [10, 10, 0, 0] })
+                      )
+                    )
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "card" },
+                  React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Orders by Status"),
+                  React.createElement(
+                    "div",
+                    { style: { width: "100%", height: 280 } },
+                    React.createElement(
+                      ResponsiveContainer,
+                      null,
+                      React.createElement(
+                        PieChart,
+                        null,
+                        React.createElement(
+                          Pie,
+                          { data: stats.statusData, dataKey: "value", nameKey: "name", innerRadius: 55, outerRadius: 95, paddingAngle: 2 },
+                          stats.statusData.map((_, i) =>
+                            React.createElement(Cell, { key: i, fill: PIE_COLORS[i % PIE_COLORS.length] })
+                          )
+                        ),
+                        React.createElement(Tooltip, { contentStyle: { background: "rgba(7,10,15,.92)", border: "1px solid rgba(255,255,255,.12)", borderRadius: 12, color: "#e7eef7" } }),
+                        React.createElement(Legend, { wrapperStyle: { color: "rgba(231,238,247,.75)" } })
+                      )
+                    )
+                  )
+                )
+              ),
+          hasCharts
+            ? React.createElement(
+                "div",
+                { className: "card", style: { marginTop: 12 } },
+                React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Daily Order Volume (last 14 days)"),
+                React.createElement(
+                  "div",
+                  { style: { width: "100%", height: 260 } },
+                  React.createElement(
+                    ResponsiveContainer,
+                    null,
+                    React.createElement(
+                      LineChart,
+                      { data: stats.dayData, margin: { top: 10, right: 18, left: -10, bottom: 0 } },
+                      React.createElement(CartesianGrid, { stroke: "rgba(255,255,255,.08)" }),
+                      React.createElement(XAxis, { dataKey: "date", tick: { fill: "rgba(231,238,247,.70)", fontSize: 11 } }),
+                      React.createElement(YAxis, { tick: { fill: "rgba(231,238,247,.70)", fontSize: 11 } }),
+                      React.createElement(Tooltip, { contentStyle: { background: "rgba(7,10,15,.92)", border: "1px solid rgba(255,255,255,.12)", borderRadius: 12, color: "#e7eef7" } }),
+                      React.createElement(Line, { type: "monotone", dataKey: "orders", stroke: "#b8f04f", strokeWidth: 3, dot: { r: 2 } })
+                    )
+                  )
+                )
+              )
+            : null
+        );
+      }
+
+      function AdminDashboard({ orders, setOrders, onLogout }) {
+        function updateStatus(orderId, status) {
+          setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status } : o)));
+        }
+        function removeOrder(orderId) {
+          setOrders((prev) => prev.filter((o) => o.id !== orderId));
+        }
+        function exportCsv() {
+          const rows = [
+            [
+              "OrderNumber",
+              "CreatedAt",
+              "CustomerName",
+              "Contact",
+              "Items",
+              "TotalAmount",
+              "PaymentMethod",
+              "DeliveryAddress",
+              "PreferredDeliveryDate",
+              "Status",
+            ],
+            ...orders.map((o) => [
+              o.number,
+              o.createdAt,
+              o.customer?.fullName,
+              o.customer?.contact,
+              (o.items || [])
+                .map((it) => `${it.qty}x ${it.name}${it.variantLabel ? ` (${it.variantLabel})` : ""}`)
+                .join(" | "),
+              o.totalAmount,
+              o.paymentMethod,
+              o.customer?.address,
+              o.preferredDeliveryDate,
+              o.status,
+            ]),
+          ];
+          const stamp = new Date().toISOString().slice(0, 10);
+          downloadCsv(`chao-paint-orders-${stamp}.csv`, rows);
+        }
+
+        return React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "section" },
+            React.createElement(
+              "div",
+              { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap" } },
+              React.createElement("h2", { className: "sectionTitle", style: { marginBottom: 0 } }, "Chao Paint's Admin Panel"),
+              React.createElement(
+                "div",
+                { className: "pActions" },
+                React.createElement(
+                  "button",
+                  { className: "btn small", onClick: exportCsv },
+                  "Export CSV"
+                ),
+                React.createElement(
+                  "button",
+                  { className: "btn small", onClick: onLogout },
+                  "Logout"
+                )
+              )
+            ),
+            React.createElement(
+              "p",
+              { className: "muted", style: { marginTop: 10, fontWeight: 700 } },
+              "Orders are stored locally in this browser (localStorage)."
+            ),
+            React.createElement("h3", { className: "sectionTitle" }, "Orders"),
+            React.createElement(
+              "div",
+              { className: "tableWrap" },
+              React.createElement(
+                "table",
+                null,
+                React.createElement(
+                  "thead",
+                  null,
+                  React.createElement(
+                    "tr",
+                    null,
+                    React.createElement("th", null, "Order"),
+                    React.createElement("th", null, "Date & Time"),
+                    React.createElement("th", null, "Customer"),
+                    React.createElement("th", null, "Items"),
+                    React.createElement("th", null, "Total"),
+                    React.createElement("th", null, "Payment"),
+                    React.createElement("th", null, "Address"),
+                    React.createElement("th", null, "Status"),
+                    React.createElement("th", null, "Actions")
+                  )
+                ),
+                React.createElement(
+                  "tbody",
+                  null,
+                  orders.length
+                    ? orders
+                        .slice()
+                        .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))
+                        .map((o) =>
+                          React.createElement(
+                            "tr",
+                            { key: o.id },
+                            React.createElement(
+                              "td",
+                              null,
+                              React.createElement("div", { style: { fontWeight: 950 } }, o.number),
+                              React.createElement("div", { className: "tdSmall" }, "ID: " + o.id.slice(0, 10) + "…")
+                            ),
+                            React.createElement(
+                              "td",
+                              null,
+                              React.createElement("div", null, new Date(o.createdAt).toLocaleString("en-PH")),
+                              React.createElement("div", { className: "tdSmall" }, "Preferred: " + o.preferredDeliveryDate)
+                            ),
+                            React.createElement(
+                              "td",
+                              null,
+                              React.createElement("div", { style: { fontWeight: 950 } }, o.customer?.fullName),
+                              React.createElement("div", { className: "tdSmall" }, o.customer?.contact)
+                            ),
+                            React.createElement(
+                              "td",
+                              null,
+                              (o.items || []).map((it, idx) =>
+                                React.createElement(
+                                  "div",
+                                  { key: idx, className: "tdSmall", style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 4 } },
+                                  React.createElement("img", {
+                                    src: getStoredProductImageSrc(
+                                      it.productId,
+                                      window.__productImages || {},
+                                      (PRODUCTS.find((p) => p.id === it.productId)?.imageSvg) || "",
+                                      PRODUCTS.find((p) => p.id === it.productId)
+                                    ),
+                                    alt:
+                                      (PRODUCTS.find((p) => p.id === it.productId)?.imageAlt) ||
+                                      it.name,
+                                    loading: "lazy",
+                                    style: {
+                                      width: 34,
+                                      height: 24,
+                                      objectFit: "contain",
+                                      objectPosition: "center",
+                                      borderRadius: 9,
+                                      border: "1px solid rgba(255,255,255,.10)",
+                                      background: "rgba(255,255,255,.06)",
+                                      flex: "0 0 auto",
+                                      padding: 3,
+                                    },
+                                  }),
+                                  React.createElement(
+                                    "span",
+                                    null,
+                                    it.qty,
+                                    "x ",
+                                    it.name,
+                                    it.variantLabel ? " (" + it.variantLabel + ")" : ""
+                                  )
+                                )
+                              )
+                            ),
+                            React.createElement("td", null, React.createElement("strong", null, formatMoney(o.totalAmount))),
+                            React.createElement("td", null, o.paymentMethod),
+                            React.createElement("td", null, React.createElement("div", { className: "tdSmall" }, o.customer?.address)),
+                            React.createElement(
+                              "td",
+                              null,
+                              React.createElement(
+                                "select",
+                                { value: o.status, onChange: (e) => updateStatus(o.id, e.target.value) },
+                                ORDER_STATUSES.map((s) =>
+                                  React.createElement("option", { key: s, value: s }, s)
+                                )
+                              )
+                            ),
+                            React.createElement(
+                              "td",
+                              null,
+                              React.createElement(
+                                "button",
+                                { className: "btn small danger", onClick: () => removeOrder(o.id) },
+                                "Delete"
+                              )
+                            )
+                          )
+                        )
+                    : React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { colSpan: 9, style: { padding: 18 } },
+                          React.createElement("strong", null, "No orders yet."),
+                          React.createElement("div", { className: "help" }, "Orders submitted from the Order page will appear here.")
+                        )
+                      )
+                )
+              )
+            ),
+            React.createElement(Analytics, { orders })
+          )
+        );
+      }
+
+      function AdminProductImages({ productImages, setProductImages }) {
+        function onPick(productId, file) {
+          if (!file) return;
+          if (!/^image\//.test(file.type)) {
+            alert("Please select an image file (JPG/PNG/WebP).");
+            return;
+          }
+          const maxBytes = 2.5 * 1024 * 1024; // keep localStorage reasonable
+          if (file.size > maxBytes) {
+            alert("Image is too large. Please use an image under ~2.5MB.");
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = String(reader.result || "");
+            if (!dataUrl.startsWith("data:image/")) {
+              alert("Failed to read image.");
+              return;
+            }
+            setProductImages((prev) => ({ ...(prev || {}), [productId]: dataUrl }));
+          };
+          reader.readAsDataURL(file);
+        }
+
+        function clear(productId) {
+          setProductImages((prev) => {
+            const next = { ...(prev || {}) };
+            delete next[productId];
+            return next;
+          });
+        }
+
+        return React.createElement(
+          "div",
+          { className: "section" },
+          React.createElement("h3", { className: "sectionTitle" }, "Product Pictures"),
+          React.createElement(
+            "p",
+            { className: "muted", style: { marginTop: 0, fontWeight: 700 } },
+            "Upload real photos for each product/service. These are saved in this browser (localStorage)."
+          ),
+          React.createElement(
+            "div",
+            { className: "cards" },
+            ...PRODUCTS.map((p) =>
+              React.createElement(
+                "div",
+                { className: "pCard", key: p.id },
+                React.createElement("h4", { className: "pName", style: { margin: 0 } }, p.name),
+                React.createElement(
+                  "div",
+                  {
+                    style: {
+                      borderRadius: 16,
+                      overflow: "hidden",
+                      border: "1px solid rgba(255,255,255,.10)",
+                      background: "rgba(0,0,0,.22)",
+                    },
+                  },
+                  React.createElement("img", {
+                    src: getStoredProductImageSrc(p.id, productImages, p.imageSvg, p),
+                    alt: p.imageAlt || p.name,
+                    style: {
+                      width: "100%",
+                      height: 160,
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      display: "block",
+                      padding: 10,
+                      background: "rgba(255,255,255,.06)",
+                    },
+                  })
+                ),
+                React.createElement(
+                  "div",
+                  { className: "pActions" },
+                  React.createElement("input", {
+                    type: "file",
+                    accept: "image/*",
+                    onChange: (e) => onPick(p.id, e.target.files && e.target.files[0]),
+                    style: { width: "100%" },
+                  }),
+                  React.createElement(
+                    "button",
+                    { className: "btn small", onClick: () => clear(p.id) },
+                    "Remove"
+                  )
+                ),
+                React.createElement(
+                  "div",
+                  { className: "help" },
+                  "Recommended: square photo, JPG/WebP under ~2.5MB."
+                )
+              )
+            )
+          )
+        );
+      }
+
+      function App() {
+        const [page, setPage] = useState("home");
+        const [mobileOpen, setMobileOpen] = useState(false);
+        const [orders, setOrders] = useLocalStorageState("chaoPaint.orders.v1", []);
+        const [cart, setCart] = useLocalStorageState("chaoPaint.cart.v1", {});
+        const [productImages, setProductImages] = useLocalStorageState("chaoPaint.productImages.v1", {});
+        const [adminAuthed, setAdminAuthed] = useLocalStorageState("chaoPaint.adminAuthed.v1", false);
+        const [lastOrderId, setLastOrderId] = useState(null);
+
+        const lastOrder = useMemo(() => {
+          if (!lastOrderId) return null;
+          return orders.find((o) => o.id === lastOrderId) || null;
+        }, [orders, lastOrderId]);
+
+        function addToCart(productId) {
+          const product = PRODUCTS.find((p) => p.id === productId);
+          if (!product) return;
+          const defaultVariant = product.variants?.[0];
+          setCart((prev) => {
+            const next = { ...(prev || {}) };
+            const current = next[productId] || { productId, qty: 0 };
+            next[productId] = {
+              ...current,
+              qty: (current.qty || 0) + 1,
+              variantLabel: current.variantLabel || defaultVariant?.label || "",
+              unitPrice:
+                Number.isFinite(current.unitPrice) ? current.unitPrice : (defaultVariant?.price ?? 0),
+            };
+            return next;
+          });
+        }
+
+        function submitOrder(order) {
+          setOrders((prev) => [order, ...(prev || [])]);
+          setLastOrderId(order.id);
+          setPage("order");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function goAdmin() {
+          setLastOrderId(null);
+          setPage("admin");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        useEffect(() => {
+          const onHash = () => {
+            const h = (location.hash || "").replace("#", "");
+            if (h === "home" || h === "products" || h === "order") setPage(h);
+          };
+          window.addEventListener("hashchange", onHash);
+          onHash();
+          return () => window.removeEventListener("hashchange", onHash);
+        }, []);
+
+        useEffect(() => {
+          // Update hash for simple deep-linking (still "no external routing")
+          if (page === "home" || page === "products" || page === "order") location.hash = page;
+        }, [page]);
+
+        const content = (() => {
+          if (page === "home") return React.createElement(HomePage, { goProducts: () => setPage("products"), goOrder: () => setPage("order") });
+          if (page === "products") return React.createElement(ProductsPage, { addToCart: (id) => { addToCart(id); setPage("order"); }, productImages });
+          if (page === "order") return React.createElement(OrderPage, { cart, setCart, submitOrder, lastOrder, productImages });
+          if (page === "admin") {
+            if (!adminAuthed) {
+              return React.createElement(AdminLogin, {
+                onSuccess: () => setAdminAuthed(true),
+                onCancel: () => setPage("home"),
+              });
+            }
+            // allow AdminDashboard's order rows to access images without threading props through table code
+            window.__productImages = productImages || {};
+            return React.createElement(AdminDashboard, {
+              orders,
+              setOrders,
+              onLogout: () => setAdminAuthed(false),
+            });
+          }
+          return React.createElement("div", { className: "container", style: { padding: "24px 0" } }, "Not found");
+        })();
+
+        return React.createElement(
+          React.Fragment,
+          null,
+          React.createElement(TopBar, {
+            page,
+            setPage,
+            isMobileOpen: mobileOpen,
+            setMobileOpen: setMobileOpen,
+            onAdmin: goAdmin,
+          }),
+          content,
+          page === "admin" && adminAuthed
+            ? React.createElement(
+                "div",
+                { className: "container" },
+                React.createElement(AdminProductImages, { productImages, setProductImages })
+              )
+            : null,
+          React.createElement(
+            "div",
+            { className: "container" },
+            React.createElement(
+              "div",
+              { className: "footer" },
+              React.createElement(
+                "div",
+                null,
+                React.createElement("strong", null, BUSINESS.name),
+                " — ",
+                BUSINESS.type,
+                " • ",
+                BUSINESS.location
+              ),
+              React.createElement(
+                "div",
+                { className: "tiny", style: { marginTop: 6 } },
+                "Call/Text: ",
+                React.createElement("a", { href: "tel:" + BUSINESS.phone }, BUSINESS.phone),
+                " • Email: ",
+                React.createElement("a", { href: "mailto:" + BUSINESS.email }, BUSINESS.email),
+                " • Facebook: ",
+                React.createElement(
+                  "a",
+                  { href: "https://" + BUSINESS.facebook, target: "_blank", rel: "noopener noreferrer" },
+                  BUSINESS.facebook
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "tiny", style: { marginTop: 6 } },
+                "Payments: ",
+                BUSINESS.payments.join(", "),
+                " • ",
+                BUSINESS.shipping
+              )
+            )
+          )
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
