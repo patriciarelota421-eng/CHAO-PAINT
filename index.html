@@ -71,6 +71,7 @@
       .brand{
         display:flex;align-items:center;gap:10px;
         font-weight:900;letter-spacing:.4px;
+        min-width:0;
       }
       .logo{
         width:34px;height:34px;border-radius:50%;
@@ -96,6 +97,7 @@
         padding:7px 10px;border-radius:999px;
         background: rgba(255,255,255,.03);
         white-space:nowrap;
+        max-width:100%;
       }
       .tagDot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(245,208,111,.12)}
 
@@ -412,6 +414,9 @@
           --chartH: 220px;
           --chartHCompact: 210px;
         }
+        .topbarInner{flex-wrap:wrap}
+        .tag{width:100%; justify-content:center; white-space:normal; text-align:center}
+        .tag span{line-height:1.2}
         .nav{display:none}
         .hamburger{display:inline-flex;align-items:center;justify-content:center}
         .mobileMenu{display:block}
@@ -425,6 +430,8 @@
         .ctaRow .btn{width:100%; justify-content:center}
         .grid2{grid-template-columns:1fr}
         .kpi{padding:12px}
+        .banner{flex-direction:column; align-items:stretch}
+        .banner .badge{justify-content:center; white-space:normal; text-align:center}
         .section{padding:14px 0 22px}
         th,td{padding:10px 10px}
         table{min-width: 520px}
@@ -437,6 +444,7 @@
           --chartH: 200px;
           --chartHCompact: 190px;
         }
+        .tag{padding:6px 10px}
         .floatBtn{right:10px;bottom:10px;padding:10px 12px}
       }
       @media (min-width: 1300px){
