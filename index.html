@@ -30,6 +30,13 @@
         --radius: 18px;
         --radius2: 12px;
         --focus: 0 0 0 4px rgba(255,122,24,.22);
+        --heroPhotoH: 220px;
+        --storePhotoH: 190px;
+        --productImgH: 160px;
+        --thumbW: 64px;
+        --thumbH: 44px;
+        --chartH: 280px;
+        --chartHCompact: 260px;
       }
       *{box-sizing:border-box}
       html,body{height:100%}
@@ -199,7 +206,7 @@
       }
       .heroPhotoFrame img{
         width:100%;
-        height: 220px;
+        height: var(--heroPhotoH);
         object-fit: contain;
         object-position: center;
         display:block;
@@ -392,11 +399,25 @@
         .cards{grid-template-columns: repeat(2, minmax(0,1fr))}
       }
       @media (max-width: 760px){
+        :root{
+          --heroPhotoH: 180px;
+          --storePhotoH: 160px;
+          --productImgH: 140px;
+          --thumbW: 56px;
+          --thumbH: 40px;
+          --chartH: 220px;
+          --chartHCompact: 210px;
+        }
+        .container{padding:0 14px}
+        .hero{padding:22px 0 12px}
+        .heroCard{padding:18px}
         .nav{display:none}
         .hamburger{display:inline-flex;align-items:center;justify-content:center}
         .mobileMenu{display:block}
         .cards{grid-template-columns: 1fr}
         .formGrid{grid-template-columns:1fr}
+        table{min-width: 640px}
+        .floatBtn{right:12px;bottom:12px}
       }
     </style>
   </head>
@@ -800,7 +821,7 @@
                     loading: "lazy",
                     style: {
                       width: "100%",
-                      height: 190,
+                      height: "var(--storePhotoH)",
                       objectFit: "cover",
                       objectPosition: "center",
                       display: "block",
@@ -1085,7 +1106,7 @@
                       loading: "lazy",
                       style: {
                         width: "100%",
-                        height: 160,
+                        height: "var(--productImgH)",
                         objectFit: "contain",
                         objectPosition: "center",
                         display: "block",
@@ -1108,8 +1129,8 @@
                               setPreviewSrc((prev) => ({ ...(prev || {}), [p.id]: src })),
                             title: "Click to preview",
                             style: {
-                              width: 64,
-                              height: 44,
+                              width: "var(--thumbW)",
+                              height: "var(--thumbH)",
                               objectFit: "contain",
                               objectPosition: "center",
                               borderRadius: 12,
@@ -1841,7 +1862,7 @@
                   React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Best-Selling Products"),
                   React.createElement(
                     "div",
-                    { style: { width: "100%", height: 280 } },
+                    { style: { width: "100%", height: "var(--chartH)" } },
                     React.createElement(
                       ResponsiveContainer,
                       null,
@@ -1863,7 +1884,7 @@
                   React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Orders by Status"),
                   React.createElement(
                     "div",
-                    { style: { width: "100%", height: 280 } },
+                    { style: { width: "100%", height: "var(--chartH)" } },
                     React.createElement(
                       ResponsiveContainer,
                       null,
@@ -1891,7 +1912,7 @@
                 React.createElement("h4", { style: { margin: "0 0 10px", fontWeight: 950 } }, "Daily Order Volume (last 14 days)"),
                 React.createElement(
                   "div",
-                  { style: { width: "100%", height: 260 } },
+                  { style: { width: "100%", height: "var(--chartHCompact)" } },
                   React.createElement(
                     ResponsiveContainer,
                     null,
